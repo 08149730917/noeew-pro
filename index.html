@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danny Agency | Web Design & Development</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+         :root {
+            --primary-bg: #f8f8f8;
+            --secondary-bg: #ffffff;
+            --text-color: #000000;
+            --primary-btn-bg: #000000;
+            --primary-btn-text: #ffffff;
+            --secondary-btn-bg: transparent;
+            --secondary-btn-text: #000000;
+            --border-color: #e0e0e0;
+            --accent-color: #333333;
+            --highlight-color: #000000;
+            --footer-bg: #f9f9f9;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--primary-bg);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--text-color);
+            border-radius: 2px;
+        }
+        
+        h3 {
+            font-size: 1.6rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            opacity: 0.9;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--primary-btn-bg);
+            color: var(--primary-btn-text);
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-btn-bg);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--text-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            border-color: var(--text-color);
+        }
+        
+        .btn-secondary {
+            display: inline-block;
+            background-color: var(--secondary-btn-bg);
+            color: var(--secondary-btn-text);
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--text-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--primary-btn-bg);
+            color: var(--primary-btn-text);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-small {
+            display: inline-block;
+            background-color: var(--primary-btn-bg);
+            color: var(--primary-btn-text);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-btn-bg);
+        }
+        
+        .btn-small:hover {
+            background-color: transparent;
+            color: var(--text-color);
+            transform: translateY(-2px);
+            border-color: var(--text-color);
+        }
+        
+        .center {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .navbar {
+            background-color: var(--secondary-bg);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-menu li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        .nav-menu li a {
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 5px 0;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-menu li a:not(.btn-primary):after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--highlight-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-menu li a:not(.btn-primary):hover:after,
+        .nav-menu li a:not(.btn-primary).active:after {
+            width: 100%;
+        }
+        
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
+            color: var(--highlight-color);
+        }
+        
+        .nav-menu li a.btn-primary {
+            padding: 12px 24px;
+            font-size: 0.9rem;
+        }
+        
+        .nav-menu li a.btn-primary.active {
+            color: white;
+        }
+        
+        .nav-menu li a.btn-primary:hover {
+            color: var(--text-color);
+        }
+        
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--primary-bg);
+            margin-top: 0;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero h1 {
+            margin-bottom: 1.5rem;
+            font-size: 3.2rem;
+            line-height: 1.1;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .portfolio-header {
+            padding: 120px 0 60px;
+            text-align: center;
+            background: var(--primary-bg);
+        }
+        
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 10px 25px;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+        
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--highlight-color);
+            color: var(--primary-btn-text);
+            border-color: var(--highlight-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .portfolio-item {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: var(--secondary-bg);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+            border: 1px solid var(--border-color);
+        }
+        
+        .portfolio-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        
+        .portfolio-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .portfolio-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+        
+        .portfolio-item:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+        
+        .portfolio-item:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+        
+        .portfolio-item:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px) !important;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            border-color: var(--highlight-color);
+        }
+        
+        .portfolio-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.05);
+        }
+        
+        .portfolio-info {
+            padding: 25px;
+        }
+        
+        .portfolio-info h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .portfolio-info p {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-hero {
+            padding: 140px 0 80px;
+            background: var(--primary-bg);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: rotate(-2deg);
+            transition: all 0.5s ease;
+            border: 1px solid var(--border-color);
+        }
+        
+        .about-img:hover {
+            transform: rotate(0deg) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .about-details {
+            margin-top: 80px;
+        }
+        
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .feature-card {
+            padding: 30px;
+            background: var(--secondary-bg);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+            border: 1px solid var(--border-color);
+        }
+        
+        .feature-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        
+        .feature-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .feature-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+        
+        .feature-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px) !important;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            border-color: var(--highlight-color);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--highlight-color);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+        }
+        
+        .resume-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+        }
+        
+        .resume-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background-color: var(--highlight-color);
+            color: white;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .view-resume-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background-color: transparent;
+            color: var(--text-color);
+            border: 2px solid var(--text-color);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .resume-btn:hover {
+            background-color: var(--primary-btn-bg);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .view-resume-btn:hover {
+            background-color: var(--primary-btn-bg);
+            color: var(--primary-btn-text);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .packages {
+            padding: 100px 0;
+            background: var(--primary-bg);
+        }
+        
+        .package-tabs {
+            display: none;
+        }
+        
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .package-card {
+            padding: 40px 30px;
+            border-radius: 12px;
+            background: var(--secondary-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        .package-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        
+        .package-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .package-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+        
+        .package-card:hover {
+            transform: translateY(-10px) !important;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            border-color: var(--highlight-color);
+        }
+        
+        .package-card.popular {
+            border: 2px solid var(--highlight-color);
+            position: relative;
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: var(--highlight-color);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .package-price {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin: 20px 0;
+            color: var(--highlight-color);
+        }
+        
+        .package-price span {
+            font-size: 1rem;
+            font-weight: normal;
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+        
+        .package-features {
+            list-style: none;
+            margin: 30px 0;
+        }
+        
+        .package-features li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--border-color);
+        }
+        
+        .package-features i {
+            color: var(--highlight-color);
+            font-size: 1.1rem;
+        }
+        
+        .faq-section {
+            padding: 100px 0;
+            background: var(--secondary-bg);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        
+        .faq-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        
+        .faq-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .faq-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+        
+        .faq-item:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+        
+        .faq-item:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+        
+        .faq-item:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px) !important;
+            border-color: var(--highlight-color);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background: var(--secondary-bg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-answer.active {
+            padding: 0 20px 20px;
+            max-height: 500px;
+        }
+        
+        .faq-toggle {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: var(--highlight-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-toggle i {
+            font-size: 0.8rem;
+        }
+        
+        .faq-toggle.active {
+            transform: rotate(45deg);
+            background-color: var(--text-color);
+        }
+        
+        .project-form-section {
+            padding: 100px 0;
+            background: var(--primary-bg);
+        }
+        
+        .project-form {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--secondary-bg);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+            border: 1px solid var(--border-color);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .form-label {
+            position: absolute;
+            left: 20px;
+            top: -10px;
+            background: var(--secondary-bg);
+            padding: 0 10px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 14px 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background-color: var(--secondary-bg);
+            color: var(--text-color);
+        }
+        
+        .form-control:focus {
+            border-color: var(--highlight-color);
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+            outline: none;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--highlight-color);
+            color: var(--primary-btn-text);
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--primary-btn-bg);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid var(--highlight-color);
+            margin-bottom: 30px;
+        }
+        
+        .success-message i {
+            font-size: 3rem;
+            color: var(--highlight-color);
+            margin-bottom: 20px;
+        }
+        
+        .success-message h3 {
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+        
+        .page-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+            flex: 1;
+        }
+        
+        .page-section.active {
+            display: block;
+        }
+        
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .radio-option:hover {
+            border-color: var(--highlight-color);
+        }
+        
+        .radio-option input[type="radio"] {
+            margin-right: 15px;
+            accent-color: black;
+        }
+        
+        .radio-option.active {
+            border-color: var(--highlight-color);
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        .package-selection {
+            display: none;
+            padding: 20px;
+            margin-bottom: 30px;
+            background-color: rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid var(--highlight-color);
+        }
+        
+        .package-selection.active {
+            display: block;
+        }
+        /* Footer Styles */
+        
+        .danny-footer {
+            background-color: var(--footer-bg);
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+        /* Hide footer on home page */
+        
+        body.home-page .danny-footer {
+            display: none;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 0;
+                flex-direction: column;
+                background-color: var(--secondary-bg);
+                width: 80%;
+                max-width: 350px;
+                height: 100vh;
+                padding: 80px 30px 30px;
+                box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: all 0.5s ease;
+                justify-content: flex-start;
+                z-index: 1000;
+            }
+            .nav-menu.active {
+                left: 0;
+            }
+            .nav-menu li {
+                margin: 0 0 25px 0;
+            }
+            .nav-menu li a:after {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .menu-toggle.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .menu-toggle.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+            .hero-buttons {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            .resume-buttons {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            .hero {
+                padding-top: 100px;
+                text-align: center;
+            }
+            .hero-content {
+                max-width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero p {
+                max-width: 100%;
+            }
+            .project-form {
+                padding: 30px 20px;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .portfolio-img {
+                height: 300px;
+            }
+        }
+    </style>
+
+    <body class="home-page">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container nav-container">
+                <a href="#" class="logo" onclick="showPage('home')"><img src="" alt=""> Danny Agency</a>
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#" onclick="showPage('home')" class="active"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#" onclick="showPage('portfolio')"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+                    <li><a href="#" onclick="showPage('about')"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="#" onclick="showPage('hire')"><i class="fas fa-handshake"></i> Hire Us</a></li>
+                    <li><a href="#" onclick="showPage('faq')"><i class="fas fa-question-circle"></i> FAQs</a></li>
+                    <li><a href="#" onclick="showPage('start-project')" class="btn-primary"><i class="fas fa-rocket"></i> Start Project</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Home Page -->
+        <section id="home-page" class="page-section active">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>Transforming Visions Into Digital Reality</h1>
+                        <p>We craft beautiful, high-performing websites that help your business stand out and convert visitors into customers.</p>
+                        <div class="hero-buttons">
+                            <a href="#" onclick="showPage('hire')" class="btn-primary"><i class="fas fa-handshake"></i> Hire Us</a>
+                            <a href="#" onclick="showPage('portfolio')" class="btn-secondary"><i class="fas fa-briefcase"></i> Portfolio</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Portfolio Page -->
+        <section id="portfolio-page" class="page-section">
+            <!-- Portfolio Header -->
+            <section class="portfolio-header">
+                <div class="container">
+                    <h1>Our Portfolio</h1>
+                    <p>Explore our latest projects and see how we've helped businesses like yours succeed online.</p>
+
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">All Projects</button>
+                        <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
+                        <button class="filter-btn" data-filter="clothing">Clothing Brands</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portfolio Grid -->
+            <section class="portfolio-section">
+                <div class="container">
+                    <div class="portfolio-grid">
+                        <!-- E-commerce Project 1 -->
+                        <div class="portfolio-item" data-category="ecommerce">
+                            <img src="IMAGES/Screenshot_26-6-2025_2040_www.heatculture.in.jpeg" alt="Heat Culture" class="portfolio-img">
+                            <div class="portfolio-info">
+                                <h3>Heat Culture</h3>
+                                <p>E-commerce website for a fashion brand with custom product configurator</p>
+                                <a href="https://www.heatculture.in/" target="_blank" class="btn-small">View Live Site</a>
+                            </div>
+                        </div>
+
+                        <!-- E-commerce Project 2 -->
+                        <div class="portfolio-item" data-category="ecommerce">
+                            <img src="IMAGES/Screenshot_26-6-2025_2058_www.supremebeauty.com.jpeg" alt="Supreme Beauty" class="portfolio-img">
+                            <div class="portfolio-info">
+                                <h3>Supreme Beauty</h3>
+                                <p>Online store for beauty products with subscription model</p>
+                                <a href="https://www.supremebeauty.com/" target="_blank" class="btn-small">View Live Site</a>
+                            </div>
+                        </div>
+
+                        <!-- E-commerce Project 3 -->
+                        <div class="portfolio-item" data-category="ecommerce">
+                            <img src="IMAGES/Screenshot_26-6-2025_20559_stickerly.shop.jpeg" alt="Stickerly" class="portfolio-img">
+                            <div class="portfolio-info">
+                                <h3>Stickerly</h3>
+                                <p>E-commerce platform for custom stickers with design tool</p>
+                                <a href="https://stickerly.shop/" target="_blank" class="btn-small">View Live Site</a>
+                            </div>
+                        </div>
+
+                        <!-- Clothing Brand Project 1 -->
+                        <div class="portfolio-item" data-category="clothing">
+                            <img src="IMAGES/Screenshot_26-6-2025_20857_www.beeinspiredclothing.com.jpeg" alt="Bee Inspired" class="portfolio-img">
+                            <div class="portfolio-info">
+                                <h3>Bee Inspired</h3>
+                                <p>Modern clothing brand website with lookbook gallery</p>
+                                <a href="https://www.beeinspiredclothing.com/en-ng" target="_blank" class="btn-small">View Live Site</a>
+                            </div>
+                        </div>
+
+                        <!-- Clothing Brand Project 2 -->
+                        <div class="portfolio-item" data-category="clothing">
+                            <img src="IMAGES/Screenshot_26-6-2025_20937_www.peaceinchaos.in.jpeg" alt="Peace in Chaos" class="portfolio-img">
+                            <div class="portfolio-info">
+                                <h3>Peace in Chaos</h3>
+                                <p>Streetwear brand with animated product displays</p>
+                                <a href="https://www.peaceinchaos.in/" target="_blank" class="btn-small">View Live Site</a>
+                            </div>
+                        </div>
+
+                        <!-- Clothing Brand Project 3 -->
+                        <div class="portfolio-item" data-category="clothing">
+                            <img src="IMAGES/Screenshot_26-6-2025_201048_vampirefreaks.com.jpeg" alt="Vampire Freaks" class="portfolio-img">
+                            <div class="portfolio-info">
+                                <h3>Vampire Freaks</h3>
+                                <p>Alternative fashion brand with dark aesthetic</p>
+                                <a href="https://vampirefreaks.com/en-uk" target="_blank" class="btn-small">View Live Site</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- About Us Page -->
+        <section id="about-page" class="page-section">
+            <!-- About Hero -->
+            <section class="about-hero">
+                <div class="container">
+                    <div class="about-content">
+                        <div>
+                            <h1>We Create Digital Experiences That Matter</h1>
+                            <p>Danny Agency is a full-service design and development agency dedicated to helping businesses establish a powerful online presence.</p>
+                            <p>Founded in 2020, we've grown from a one-person operation to a team of passionate designers, developers, and digital strategists.</p>
+                        </div>
+                        <img src="https://via.placeholder.com/600x400?text=Our+Team" alt="Our Team" class="about-img">
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Details -->
+            <section class="about-details">
+                <div class="container">
+                    <h2>Our Services</h2>
+                    <p>We offer a comprehensive range of digital services to meet all your business needs.</p>
+
+                    <div class="about-features">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-mobile"></i>
+                            </div>
+                            <h3>App Development</h3>
+                            <p>Custom mobile applications built for iOS and Android platforms with cutting-edge technologies and seamless user experiences.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h3>Website Development</h3>
+                            <p>Responsive, high-performance websites tailored to your brand with modern design and optimal functionality.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <h3>3D Works</h3>
+                            <p>Stunning 3D modeling, animation, and visualization services for products, architecture, and interactive experiences.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <h3>Graphics Design</h3>
+                            <p>Creative visual solutions including branding, logos, marketing materials, and digital assets that make your brand stand out.</p>
+                        </div>
+                    </div>
+
+                    <div class="resume-buttons">
+                        <a href="resume.pdf" download class="resume-btn">
+                            <i class="fas fa-download"></i> Download Resume
+                        </a>
+                        <a href="resume.html" class="view-resume-btn">
+                            <i class="fas fa-eye"></i> View Resume
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Hire Us Page -->
+        <section id="hire-page" class="page-section">
+            <!-- Project Form -->
+            <section class="project-form-section">
+                <div class="container">
+                    <div class="project-form">
+                        <div id="success-message" class="success-message">
+                            <i class="fas fa-check-circle"></i>
+                            <h3>Thank You!</h3>
+                            <p>Your message has been sent successfully. We'll get back to you within 24 hours.</p>
+                        </div>
+                        <h1>Start Your Project</h1>
+                        <p class="subtitle">Fill out the form below and we'll get back to you within 24 hours.</p>
+                        <div id="package-selection" class="package-selection"></div>
+
+                        <form id="project-form" onsubmit="submitForm(event)">
+                            <div class="form-group">
+                                <label for="business-name" class="form-label">Business Name</label>
+                                <input type="text" id="business-name" name="business-name" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="instagram" class="form-label">Instagram Handle</label>
+                                <input type="text" id="instagram" name="instagram" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="budget" class="form-label">Project Package</label>
+                                <select id="budget" name="budget" class="form-control" required>
+                                <option value="">Select a package</option>
+                                <option value="basic-website">Basic Website Package ($399)</option>
+                                <option value="standard-website">Standard Website Package ($749)</option>
+                                <option value="premium-website">Premium Website Package ($1,199)</option>
+                            </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="referral" class="form-label">How did you hear about us?</label>
+                                <textarea id="referral" name="referral" class="form-control" required></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">What service do you need?</label>
+                                <div class="radio-group">
+                                    <label class="radio-option">
+                                    <input type="radio" name="service" value="website" required> Website Development
+                                </label>
+                                    <label class="radio-option">
+                                    <input type="radio" name="service" value="graphics"> Graphics Design
+                                </label>
+                                    <label class="radio-option">
+                                    <input type="radio" name="service" value="marketing"> Marketing
+                                </label>
+                                    <label class="radio-option">
+                                    <input type="radio" name="service" value="other"> Other
+                                </label>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="submit-btn">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Start Project Page -->
+        <section id="start-project-page" class="page-section">
+            <!-- Packages Section -->
+            <section class="packages">
+                <div class="container">
+                    <h1>Our Packages</h1>
+
+                    <div class="package-grid">
+                        <div class="package-card">
+                            <h3>Basic Package</h3>
+                            <p>Perfect for small businesses and startups</p>
+                            <div class="package-price">$399 <span>/ one-time</span></div>
+                            <ul class="package-features">
+                                <li><i class="fas fa-check"></i> 5 Custom Pages</li>
+                                <li><i class="fas fa-check"></i> Responsive theme Design</li>
+                                <li><i class="fas fa-check"></i> Basic SEO Setup</li>
+                                <li><i class="fas fa-check"></i> Content upload</li>
+                                <li><i class="fas fa-check"></i> 3 Weeks Delivery</li>
+                                <li><i class="fas fa-check"></i> 1 day Support</li>
+                            </ul>
+                            <a href="#" class="btn-primary" onclick="selectPackage('basic-website')">Select Package</a>
+                        </div>
+
+                        <div class="package-card popular">
+                            <div class="popular-badge">Most Popular</div>
+                            <h3>Standard Website</h3>
+                            <p>Ideal for growing businesses</p>
+                            <div class="package-price">$749 <span>/ one-time</span></div>
+                            <ul class="package-features">
+                                <li><i class="fas fa-check"></i> 8 Custom Pages</li>
+                                <li><i class="fas fa-check"></i> Advanced theme Design</li>
+                                <li><i class="fas fa-check"></i> App and plug in Integration</li>
+                                <li><i class="fas fa-check"></i> SEO Optimization</li>
+                                <li><i class="fas fa-check"></i> CMS Integration </li>
+                                <li><i class="fas fa-check"></i> 4 weeks Delivery</li>
+                                <li><i class="fas fa-check"></i> 3 days maintenance</li>
+                            </ul>
+                            <a href="#" class="btn-primary" onclick="selectPackage('standard-website')">Select Package</a>
+                        </div>
+
+                        <div class="package-card">
+                            <h3>Premium package</h3>
+                            <p>For businesses needing advanced features</p>
+                            <div class="package-price">$1,199 <span>/ one-time</span></div>
+                            <ul class="package-features">
+                                <li><i class="fas fa-check"></i> Unlimited custom Pages</li>
+                                <li><i class="fas fa-check"></i> Custom Animations</li>
+                                <li><i class="fas fa-check"></i> Advanced SEO & speed Optimization</li>
+                                <li><i class="fas fa-check"></i> Product upload</li>
+                                <li><i class="fas fa-check"></i> Website audit</li>
+                                <li><i class="fas fa-check"></i> 6 weeks delivery</li>
+                                <li><i class="fas fa-check"></i> 5 days personalized maintenance</li>
+                            </ul>
+                            <a href="#" class="btn-primary" onclick="selectPackage('premium-website')">Select Package</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- FAQ Page -->
+        <section id="faq-page" class="page-section">
+            <!-- FAQ Section -->
+            <section class="faq-section">
+                <div class="container">
+                    <h1>Frequently Asked Questions</h1>
+                    <p class="subtitle">Find answers to common questions about our services and process.</p>
+
+                    <div class="faq-container">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>How long does it take to build a website?</span>
+                                <div class="faq-toggle">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>The timeline depends on the complexity of your project. A basic website typically takes 2-3 weeks, while more complex projects can take 6-8 weeks or longer. We'll provide a detailed timeline after our initial consultation.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>What information do you need to start my project?</span>
+                                <div class="faq-toggle">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>We'll need details about your business, target audience, design preferences, and any specific features you require. You can provide brand assets like logos, color schemes, and content, or we can help create these elements
+                                    for you.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>Do you offer website maintenance after launch?</span>
+                                <div class="faq-toggle">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Yes, we offer ongoing maintenance plans to keep your website secure, updated, and performing optimally. Our maintenance services include regular backups, software updates, security monitoring, and content updates.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>Can you help with website content creation?</span>
+                                <div class="faq-toggle">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Absolutely! We offer copywriting services to create compelling content for your website. Our team can help with everything from page copy to blog posts, ensuring your messaging is clear, engaging, and optimized for SEO.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>What platforms do you work with?</span>
+                                <div class="faq-toggle">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>We primarily work with custom HTML/CSS/JS solutions, WordPress, and Shopify. However, we're experienced with various platforms and can recommend the best solution based on your specific needs and budget.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>How do you handle revisions and feedback?</span>
+                                <div class="faq-toggle">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>We include a set number of revision rounds in each package. You'll have the opportunity to review designs and provide feedback at key milestones. We value your input and will work closely with you to ensure the final product
+                                    meets your expectations.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-cta">
+                        <h3>Still have questions?</h3>
+                        <p>Contact us directly and we'll be happy to help.</p>
+                        <a href="#" onclick="resetFormAndShowHirePage()" class="btn-primary">Contact Us</a>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Footer -->
+        <footer class="danny-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <span>© 2024 Danny Agency</span>
+                    <span>danny-agency.com</span>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            // Mobile Menu Toggle
+            const menuToggle = document.getElementById('mobile-menu');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (menuToggle) {
+                menuToggle.addEventListener('click', () => {
+                    menuToggle.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                    document.body.classList.toggle('no-scroll');
+                });
+            }
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    document.body.classList.remove('no-scroll');
+                });
+            });
+
+            // Sticky navbar on scroll
+            window.addEventListener('scroll', () => {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Page Navigation
+            function showPage(pageId) {
+                // Update body class for home page detection
+                if (pageId === 'home') {
+                    document.body.classList.add('home-page');
+                } else {
+                    document.body.classList.remove('home-page');
+                }
+
+                // Hide all pages
+                document.querySelectorAll('.page-section').forEach(page => {
+                    page.classList.remove('active');
+                });
+
+                // Show selected page
+                const targetPage = document.getElementById(`${pageId}-page`);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                }
+
+                // Update active nav item
+                document.querySelectorAll('.nav-menu a').forEach(item => {
+                    item.classList.remove('active');
+                    const onclickAttr = item.getAttribute('onclick');
+                    if (onclickAttr && onclickAttr.includes(pageId)) {
+                        item.classList.add('active');
+                    }
+                });
+
+                // Scroll to top
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+
+                // Update URL without reloading
+                history.pushState(null, null, `#${pageId}`);
+            }
+
+            // Check URL hash on load
+            window.addEventListener('load', () => {
+                const hash = window.location.hash.substring(1) || 'home';
+                showPage(hash);
+
+                // Reset form and package selection
+                resetForm();
+
+                animateOnScroll();
+            });
+
+            // Portfolio Filtering
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    const filterValue = button.getAttribute('data-filter');
+
+                    portfolioItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                            item.style.animation = 'fadeInUp 0.6s ease forwards';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // FAQ Accordion
+            const faqQuestions = document.querySelectorAll('.faq-question');
+
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const toggle = question.querySelector('.faq-toggle');
+
+                    faqQuestions.forEach(q => {
+                        if (q !== question) {
+                            q.nextElementSibling.classList.remove('active');
+                            const otherToggle = q.querySelector('.faq-toggle');
+                            if (otherToggle) otherToggle.classList.remove('active');
+                        }
+                    });
+
+                    answer.classList.toggle('active');
+                    if (toggle) toggle.classList.toggle('active');
+                });
+            });
+
+            // Radio button styling
+            const radioOptions = document.querySelectorAll('.radio-option');
+            radioOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    const radioInput = option.querySelector('input');
+                    if (radioInput) radioInput.checked = true;
+
+                    radioOptions.forEach(opt => opt.classList.remove('active'));
+                    option.classList.add('active');
+                });
+            });
+
+            // Package Selection
+            function selectPackage(packageType) {
+                // Hide success message if visible
+                const successMessage = document.getElementById('success-message');
+                if (successMessage) {
+                    successMessage.style.display = 'none';
+                }
+
+                // Show the form if it was hidden
+                const projectForm = document.getElementById('project-form');
+                if (projectForm) {
+                    projectForm.style.display = 'block';
+                }
+
+                localStorage.setItem('selectedPackage', packageType);
+                showPage('hire');
+
+                const packageSelect = document.getElementById('budget');
+                if (packageSelect) {
+                    packageSelect.value = packageType;
+                }
+
+                const packageSelection = document.getElementById('package-selection');
+                if (packageSelection) {
+                    packageSelection.innerHTML = `
+                <h3>Selected Package</h3>
+                <p>You've selected our ${packageType} package. Please complete the form below to proceed.</p>
+            `;
+                    packageSelection.classList.add('active');
+                }
+
+                setTimeout(() => {
+                    const formSection = document.querySelector('.project-form-section');
+                    if (formSection) {
+                        formSection.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }, 500);
+            }
+
+            // Form submission handling
+            function submitForm(e) {
+                e.preventDefault();
+
+                const form = e.target;
+                const submitBtn = form.querySelector('.submit-btn');
+                const successMessage = document.getElementById('success-message');
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+
+                setTimeout(() => {
+                    form.style.display = 'none';
+                    if (successMessage) successMessage.style.display = 'block';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send';
+
+                    // Clear the form
+                    form.reset();
+
+                    // Clear package selection
+                    const packageSelection = document.getElementById('package-selection');
+                    if (packageSelection) {
+                        packageSelection.classList.remove('active');
+                    }
+
+                    // Clear local storage
+                    localStorage.removeItem('selectedPackage');
+                }, 1500);
+            }
+
+            // Reset form and package selection
+            function resetForm() {
+                const form = document.getElementById('project-form');
+                if (form) {
+                    form.reset();
+                    form.style.display = 'block';
+                }
+
+                const successMessage = document.getElementById('success-message');
+                if (successMessage) {
+                    successMessage.style.display = 'none';
+                }
+
+                const packageSelection = document.getElementById('package-selection');
+                if (packageSelection) {
+                    packageSelection.classList.remove('active');
+                }
+
+                localStorage.removeItem('selectedPackage');
+            }
+
+            // Reset form and show hire page
+            function resetFormAndShowHirePage() {
+                resetForm();
+                showPage('hire');
+            }
+
+            // Animate elements when they come into view
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('.feature-card, .package-card, .faq-item, .project-form, .portfolio-item');
+
+                elements.forEach((element, index) => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+
+                    if (elementPosition < screenPosition) {
+                        setTimeout(() => {
+                            element.style.opacity = '1';
+                            element.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', animateOnScroll);
+        </script>
+    </body>
+
+</html>
